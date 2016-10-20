@@ -1,0 +1,534 @@
+Python data structure_coursera_notes
+(covering Chapter 6-10 of the book)
+##book downloaded in Zhongyun's Dropbox folder
+##Example codes and others available
+
+
+lists, dictionaries, tuples
+
+
+##### Lecture 1  #####
+Chapter 6. String 
+"", '', both ok
+x=int(str3) + 1
+print x
+
+name = raw_input('Enter:')
+Enter:Huang
+
+#Indext in string
+letter = fruit[0] #start with 0
+
+print len(fruit)  #built in function
+
+#indefinite loop
+index = 0
+while index < len(fruit):
+   letter = fruit[index]
+   print index, letter
+   index = index + 1
+
+#definite loop (for loop),iteration variable taken care of 
+ fruit ='banana'
+for letter in fruit:  #letter already defined
+   print letter
+
+
+count=0
+for letter in word:
+   if letter =='a':
+      count = count +1
+print count
+
+#Slicing Strings: pull out substrings
+print s[0:4] #up to but not including
+print s[6:7]  outcome: P
+pring s[:] outcome: everything
+
+#logical operation in String
+"n" in fruit Outcome: True
+
+#String library
+zap = greet.lower() #lowercase everything
+print "Hi There".lower()
+
+#type, dir,find (built in functions)
+pos = fruit.find('na')  outcome: 2 (where it is in the string)
+                        outcome: -1 (not found)
+newgreet= greet. replace('Bob','Jane')
+
+#Stripping whitespace
+greet.lstrip(), greet.rstrip(),greet.strip()
+
+#Prefixes
+line.startswith('P')
+
+sppos=data.find('',atpos)# find the ''behind index atpos (parsing text)
+
+#string.join(), string.split(), string.startswith()#return true of false
+
+#convert characters to int float
+
+
+
+#####Leture 2#####
+Chapter 7. Files
+
+#open a file
+   open()
+ returns a "file handle"
+  handle = open (filename, mode")    fhand = open('mbox.txt','r')
+
+#built in functions of python
+https://docs.python.org/2.7/library/functions.html
+
+#newline character
+  Indicate when a line ends called the "newline" \n (character length = 1)
+
+#Read text file 
+   xfile = open('mbox.txt')
+   for cheese in xfile
+      print cheese ##(read every line in the file)
+
+#count lines in a file
+  fhand = open('mbox.txt')
+  count = 0
+  for line in fhand:
+      count = count + 1
+  pirnt 'Line Count:',count
+
+#len(fhand) is not working
+#Read the whole file
+    fhand = open('mbox-short.txt')
+    inp = fhand.read()  ## read as a string
+    print len(inp)
+
+#Search through a file
+    fhand = open('mbox-short.txt')     
+    for line in fhand:
+         line = line.rstrip()
+         if lin.startwith("From:"):
+           print line
+    ### The print statement adds a newline to each line
+
+#Skipping with continue
+    fhand = open('mbox-short.txt')     
+    for line in fhand:
+         line = line.rstrip()
+          #Skip 'uninteresting lines'
+         if not line.startwith("From:"):
+            continue
+         print line 
+
+   if not '@uct.ac.za' in line:
+      continue
+   print line
+
+
+#Prompt for file name
+    fname = raw_input('Enter the file name:')
+    try:
+       fhand = open(fname)
+    except:
+       print 'File cannot be opened:', fname
+       exit()
+    fhand = open(fname)
+    count = 0
+
+
+# do line strip and upper at the same time
+fname = raw_input("Enter name")
+if len(fname) == 0
+    fname = 'mbox-short.txt'
+fhand = open(fname)
+for line in fhand:
+    line = line.rstrip().upper()   ##always blank 4 spaces beforehead
+    print line
+
+
+Assignment 7.2
+Write a program that prompts for a file name, then opens that file and reads through the file, looking for lines of the form:
+X-DSPAM-Confidence:    0.8475
+Count these lines and extract the floating point values from each of the lines and compute the average of those values and produce an output as shown below.
+You can download the sample data at http://www.pythonlearn.com/code/mbox-short.txt when you are testing below enter mbox-short.txt as the file name.
+
+# Use the file name mbox-short.txt as the file name
+fname = raw_input("Enter file name: ")
+fh = open(fname)
+count = 0        #define outside the for loop
+total = float(0) #take care of type
+for line in fh:
+    if line.startswith("X-DSPAM-Confidence:"):
+        pos = line.find(' ')
+        number = float(line[pos:])
+        count = count + 1
+        total = total + number        
+print "Average spam confidence:",total/count   #use comma to seperate the things to type
+
+
+
+
+##### Lecture 4 #####
+Chapter 8: Lists
+
+# Collections
+  friends = ['Jos', 'Glenn','Sally']
+#list Constance 
+  Don't have to have things of the same type
+  One element can be a list itself 
+#pirnt friend [0] ## same as strings, string ''
+
+#Lists are mutable
+   lotto = [2,14,26]
+   lotto[2] = 28
+   print lotto 
+   2, 14, 28
+len(X) also works for lists
+# range
+  print range (4)
+  print range (len(friends))
+  [0,1,2]
+
+# for i in range(len(friends)):
+      friend = friends[i]
+      print 'Happy New Year:', friend
+
+# concatenating lists a + b
+
+  slice lists, t[1:3]
+  
+#list methods
+    type (), dir()
+     
+    stuff = list()
+    stuff.append('book')
+    stuff.append(99)
+# Is sth in a list?
+    9 in some   True
+# friends.sort()
+
+#Built in functions and lists
+  len(),max(), min(), sum(), sum()/len()
+
+#infinate loop
+total = 0
+count = 0
+while True:
+    inp = raw_input('Enter a number:')
+    if inp == 'done':break
+    value = float(inp)
+    total = total + value
+    count = count + 1
+average = total/count
+print 'Average:', average
+
+numlist = list()
+while True:
+    inp = raw_input('Enter a number')
+    if inp == 'done': break
+    value = float(inp)
+    numlist.append(value)
+average = sum(numlist)/len(numlist)
+print 'Average:', average
+
+## connecting strings and lists
+abc = 'With three words'
+stuff = abc.split() #stuff is a list
+print stuff
+
+# Specify a delimiter in splitting
+thing - line.split(';')
+
+# if not line.startswith('From '): continue
+     words = line.split()
+     print words[2]
+
+# words = line.split()
+  email = words[1]
+  pieces = email.split('@')
+
+
+Assignment 8.4 
+Open the file romeo.txt and read it line by line. For each line, split the line into a list of words using the split() function. The program should build a list of words. For each word on each line check to see if the word is already in the list and if not append it to the list. When the program completes, sort and print the resulting words in alphabetical order.
+You can download the sample data at http://www.pythonlearn.com/code/romeo.txt
+
+fname = raw_input("Enter file name: ")
+fh = open(fname)
+lst = list()
+for line in fh:
+    line = line.rstrip()
+    words = line.split()
+    for i in range(len(words)):
+        word = words[i]
+        if word in lst: continue
+        lst.append(word)
+lst.sort()
+print lst
+
+
+
+Assignment 8.5 
+Open the file mbox-short.txt and read it line by line. When you find a line that starts with 'From ' like the following line:
+From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
+You will parse the From line using split() and print out the second word in the line (i.e. the entire address of the person who sent the message). Then print out a count at the end.
+Hint: make sure not to include the lines that start with 'From:'.
+You can download the sample data at http://www.pythonlearn.com/code/mbox-short.txt
+
+fname = raw_input("Enter file name: ")
+if len(fname) < 1 : fname = "mbox-short.txt"
+
+count = 0
+words = list ()
+fh = open(fname)
+for line in fh:
+    if not line.startswith('From '): continue
+    words = line.split()
+    print words[1]
+    count = count + 1
+print "There were" , count , "lines in the file with From as the first word"
+
+
+
+#####Lecture 5#####
+Chapter 9 Dictionaries
+
+# Dictionary: a "bag" of values, each with its own label
+  key/value
+
+purse = dict()
+purse['Money'] = 12
+purse['Candy'] = 3
+
+print purse['candy']
+purse ['candy'] = purse['candy']+2
+
+# jjj = {'chuck':i,'fred':42, 'jan':100}
+
+# print 'csev' in ccc
+  False # check if a key exists
+
+
+##Counting multiple items at the same time
+
+counts = dict()
+names = ['csev','cwen','zqian','cwen']
+for name in names:
+    if nam not in counts
+        counts[name] = 1
+    else:
+        counts[name] =counts[name] + 1
+print counts
+
+
+## "get" method for dictionary
+print counts.get(name,0) # 0 is the default value if key does not exist. 
+
+
+counts = dict()
+names =['csev','cwen',XXX]
+for name in names:
+      counts[name] = counts.get(name,0) + 1  ##create or update
+print counts
+
+
+
+## Counting pattern
+counts = dict()
+print 'Enter a line of text:'
+line = raw_input('')
+
+words = line.split() # line is a string, words is a list containing split string
+print 'Words:',words
+
+print 'Counting...'
+for word in words:
+    counts[word] = counts.get(word,0) + 1
+
+print 'Counts',  counts
+
+
+## For loops (definite loops) for dictionaries
+counts = {'chuck' : 1, 'fred' : 42, 'jan' : 100}
+for key in counts
+    print key, counts[key]
+
+
+## retrieving lists of keys and values
+get a list of keys, values or items (both) from a dictionary 
+
+print list(jjj)  # print keys
+print jjj.keys() 
+print jjj.values() #order doesn't change
+print jjj.items ()  #[('jan',100),('chuck',1),('fred',42)] #tuple, key-value pair
+
+
+
+## two iteration variables
+for aaa, bbb in jjj.items():
+    print aaa, bbb          #(aaa is key, bbb is item)
+
+
+### Example code with counting + iteration + dictionary + list
+name = raw_input("enter file:")
+handle = open(name, 'r')
+text = handle.read()
+words = text.split()
+
+counts = dict()
+for word in words:
+   count[word] = counts.get(word,0) + 1
+
+bigcount = None
+bigword = None
+for word,count in counts.items():
+    if bigcount in None or count > bigcount
+        bigword = word
+        bigcount = count
+print bigword, bigcount
+
+
+Assignment 9.4 
+Write a program to read through the mbox-short.txt and figure out who has the sent the greatest number of mail messages. The program looks for 'From ' lines and takes the second word of those lines as the person who sent the mail. The program creates a Python dictionary that maps the sender's mail address to a count of the number of times they appear in the file. After the dictionary is produced, the program reads through the dictionary using a maximum loop to find the most prolific committer.
+name = raw_input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+persons = list()
+for line in handle:
+    if not line.startswith('From '):continue
+    words = line.split()
+    theperson = words [1]
+    #print theperson
+    persons.append(theperson)
+    
+counts = dict()
+for person in persons:
+    counts[person] = counts.get(person,0) + 1
+
+bigcount = None
+bigperson = None
+
+for person,count in counts.items():
+    if bigcount is None or count > bigcount:
+        bigperson = person
+        bigcount = count
+
+print bigperson, bigcount
+
+
+
+#####Lecture 6#####
+###Chapter 10   Tuples
+
+## Tuples are list-like
+x = ('Glenn', 'Sally','Jo')  #(tuple), [list], {dictionary}
+
+## list: mutable, string, not mutalbe, tuples, not mutable
+## Tuples, cannot "sort, append, reverse"
+
+l = list()
+dir(l)
+[append, count, XXXX, sort]
+
+t= tuple()
+dir(t)
+['count', 'index']
+
+#Tuples are more efficient
+When create things that are temporary
+put a tuple on the lefhand side of an assignment statements
+eg. (x,y) = (4, 'fred')
+    (a,b) = (99,98)
+    print a   #99
+
+tups = d.items()
+print tups  ## break down a dictionary into tuples
+[('csev', 2), ('cwen',4)]  # each element in the list is a tuple including key and value
+
+
+## tuples are comparable
+(0,1,2) < (5,1,2)    true  #Look at the 1st element, compare, and then next
+## Take advantage to sort a list of tuples to get a sorted version of a dictionary
+d = {'a': 10, 'b':1, 'c':22
+t = d.items()
+t.sort
+
+# t = sorted(d.items())
+ 
+  for k, v in sorted (d.items())
+      print k, v  # key sortd order
+
+# sort by values instead of key
+ c = {'a': 10, 'b':1, 'c':22}
+ tmp = list()
+ for k,v in c.items():
+    tmp.append((v,k))  ## 2 tuples with v and then k, and then append to a list
+ print tmp
+ tmp.sort(reverse=True) #sort from the highest to the lowest
+
+
+
+### 10 most common words with tuples by sorting
+fhand = open('romeo.txt')
+counts = dict()
+for line in fhand:
+    words = line.split() ##words is a list
+    for word in words: 
+        counts[word] = counts.get(word,0) + 1 #histogram pattern  do (word, count) pairs
+
+lst = list()
+for key, val in counts.items():   #pairs in the dictionary
+    lst.append ( (val,key) )
+
+lst.sort(reverse=True)
+
+for val, key in lst[:10]:
+    print key, val
+
+
+## Even shorter version
+c = {'a':10,'b':1, 'c':22}  ##dictionary
+print sorted( [ (v,k) for k,v in c.items() ] )  #list comprehension construct dynamically a list, 
+output: [(1,'b'),(10,'a'), (22,'c')]
+
+
+Assignment 10.2 
+Write a program to read through the mbox-short.txt and figure out the distribution by hour of the day for each of the messages. You can pull the hour out from the 'From ' line by finding the time and then splitting the string a second time using a colon.
+From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
+Once you have accumulated the counts for each hour, print out the counts, sorted by hour as shown below.
+name = raw_input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+hourlist = list()
+
+for line in handle:
+    if not line.startswith('From '): continue
+    words = line.split()
+    time = words[5]
+    hours = time.split(':') #two splits
+    hour = hours[0]
+    #print hour
+    hourlist.append(hour)
+
+counts = dict()
+for hour in hourlist:
+    counts[hour] = counts.get(hour,0) + 1
+
+
+#print sorted (counts.items())
+for key, value in sorted (counts.items()):
+    print key, value
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
